@@ -26,7 +26,12 @@ if uploaded_file is not None:
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
     
-    st.success(f"✅ 文件已保存：{uploaded.name}")
+    # 1. 先定义变量，接收上传结果
+uploaded = st.file_uploader("上传你的 PDF / Word 文件", type=["pdf", "docx"])
+
+# 2. 再判断变量是否存在，然后使用
+if uploaded is not None:
+    st.success(f"✅ 文件已保存: {uploaded.name}")
 
 # ---------------------- 显示当前用户的文件 ----------------------
 st.subheader("2. 你自己的文件列表（别人看不到）")
